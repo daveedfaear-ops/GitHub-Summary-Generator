@@ -1,0 +1,5 @@
+{
+  "name": "GitHub Content Summarizer",
+  "description": "An AI-powered tool to generate concise summaries of GitHub repositories or files using the Gemini API. Just paste a GitHub URL to get started.",
+  "requestFramePermissions": []
+}
