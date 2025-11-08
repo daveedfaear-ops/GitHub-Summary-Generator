@@ -1,5 +1,5 @@
 <div align="center">
-<img width="1200" height="475" alt="GitHub Content Summarizer" src="./public/assets/screenshot.png" />
+<img width="1200" height="475" alt="GitHub Content Summarizer" src="./public/assets/GitHub Summary Generator.png" />
 </div>
 
 # GitHub Summary Generator — AI-powered repo insights
