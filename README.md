@@ -34,7 +34,7 @@ High-level architecture
 
 Repository layout (typical)
 - src/ — application source (frontend + backend handlers)
-- public/ — static assets (place the screenshot at public/assets/screenshot.png)
+- public/ — static assets
 - .env.local — environment variables for local development
 - package.json — scripts and dependencies
 - README.md — this file
