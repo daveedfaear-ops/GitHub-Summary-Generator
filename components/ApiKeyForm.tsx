@@ -42,13 +42,22 @@ const ApiKeyForm: React.FC<ApiKeyFormProps> = ({ onKeySubmit }) => {
           placeholder="Enter your Gemini API Key here..."
           className="w-full max-w-md px-4 py-3 bg-gray-900 border border-gray-600 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all duration-200 text-gray-200 placeholder-gray-500"
         />
-        <button
-          type="submit"
-          className="w-full max-w-md px-6 py-3 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-indigo-500 transition-colors duration-200 disabled:bg-indigo-800 disabled:cursor-not-allowed"
-          disabled={!apiKey.trim()}
-        >
-          Save and Continue
-        </button>
+        <div className="w-full max-w-md flex flex-col sm:flex-row-reverse gap-3">
+          <button
+            type="submit"
+            className="w-full sm:flex-1 px-6 py-3 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-indigo-500 transition-colors duration-200 disabled:bg-indigo-800 disabled:cursor-not-allowed"
+            disabled={!apiKey.trim()}
+          >
+            Save and Continue
+          </button>
+          <button
+            type="button"
+            onClick={() => window.close()}
+            className="w-full sm:flex-1 px-6 py-3 bg-gray-600 text-white font-semibold rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-gray-500 transition-colors duration-200"
+          >
+            Cancel
+          </button>
+        </div>
       </form>
       <p className="text-sm text-gray-500 mt-6">
         You can get a free API key from{' '}
