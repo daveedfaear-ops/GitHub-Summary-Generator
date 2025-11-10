@@ -2,16 +2,8 @@
 import { GoogleGenAI } from "@google/genai";
 import { GitHubUrlParts } from "../types";
 
-const API_KEY = process.env.API_KEY;
-
-if (!API_KEY) {
-  throw new Error("API_KEY environment variable is not set.");
-}
-
-const ai = new GoogleGenAI({ apiKey: API_KEY });
-
 function getPromptForType(type: GitHubUrlParts['type'], name: string, content: string): string {
-    const truncatedContent = content.substring(0, 15000); // A bit more generous limit
+    const truncatedContent = content.substring(0, 30000); // Increased limit for better context
     switch (type) {
         case 'repo':
             return `
@@ -61,7 +53,12 @@ function getPromptForType(type: GitHubUrlParts['type'], name: string, content: s
     }
 }
 
-export async function summarizeContent(content: string, type: GitHubUrlParts['type'], name: string): Promise<string> {
+export async function summarizeContent(content: string, type: GitHubUrlParts['type'], name:string, apiKey: string): Promise<string> {
+  if (!apiKey) {
+    throw new Error("API key is missing.");
+  }
+  
+  const ai = new GoogleGenAI({ apiKey });
   const model = 'gemini-2.5-flash';
   const prompt = getPromptForType(type, name, content);
 
@@ -78,6 +75,10 @@ export async function summarizeContent(content: string, type: GitHubUrlParts['ty
     return response.text;
   } catch (error) {
     console.error("Error calling Gemini API:", error);
+    // Propagate a more user-friendly error message
+    if (error instanceof Error && error.message.includes('API key not valid')) {
+        throw new Error('Your Gemini API key is not valid. Please check it and try again.');
+    }
     throw new Error("Failed to generate summary due to an API error.");
   }
 }
